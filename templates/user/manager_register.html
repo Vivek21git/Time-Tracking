@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <style>
+        /* Paste the provided CSS here */
+        /* BASIC */
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            background-color: #56baed;
+            background-image: radial-gradient(650px circle at 0% 0%, hsl(218, 41%, 35%) 15%, hsl(218, 41%, 30%) 35%, hsl(218, 41%, 20%) 75%, hsl(218, 41%, 19%) 80%, transparent 100%), radial-gradient(1250px circle at 100% 100%, hsl(218, 41%, 45%) 15%, hsl(218, 41%, 30%) 35%, hsl(218, 41%, 20%) 75%, hsl(218, 41%, 19%) 80%, transparent 100%);
+            background-size: cover;
+            background-attachment: fixed;
+            font-family: "Poppins", sans-serif;
+        }
+
+        a {
+            color: #92badd;
+            display: inline-block;
+            text-decoration: none;
+            font-weight: 400;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            display: inline-block;
+            margin: 40px 8px 10px 8px;
+            color: #cccccc;
+        }
+
+        /* STRUCTURE */
+        .wrapper {
+            display: flex;
+            align-items: stretch;
+            flex-direction: column;
+            justify-content: stretch;
+            width: 100%;
+            min-height: 100%;
+            padding: 2px;
+        }
+
+        #formContent {
+            -webkit-border-radius: 10px 10px 10px 10px;
+            border-radius: 10px 10px 10px 10px;
+            background: #fff;
+            padding: 30px;
+            width: 90%;
+            max-width: 450px;
+            position: relative;
+            padding: 20px;
+            -webkit-box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+            box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+            text-align: center;
+            margin: auto;
+            /* Center the form */
+        }
+
+        #formFooter {
+            background-color: #f6f6f6;
+            border-top: 1px solid #dce8f1;
+            padding: 25px;
+            text-align: center;
+            -webkit-border-radius: 0 0 10px 10px;
+            border-radius: 0 0 10px 10px;
+        }
+
+        /* TABS */
+        h2.inactive {
+            color: #cccccc;
+        }
+
+        h2.active {
+            color: #0d0d0d;
+            border-bottom: 2px solid #5fbae9;
+        }
+
+        input[type=button],
+        input[type=submit],
+        input[type=reset] {
+            background-color: #56baed;
+            border: none;
+            color: white;
+            padding: 15px 15px;
+            /* Adjust padding */
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            text-transform: uppercase;
+            font-size: 13px;
+            -webkit-box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+            box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+            -webkit-border-radius: 5px 5px 5px 5px;
+            border-radius: 5px 5px 5px 5px;
+            margin: 5px 5px 5px 5px;
+            /* Adjust margin */
+            -webkit-transition: all 0.3s ease-in-out;
+            -moz-transition: all 0.3s ease-in-out;
+            -ms-transition: all 0.3s ease-in-out;
+            -o-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+            width: 100%;
+            /* Make the button full-width */
+        }
+
+        input[type=button]:hover,
+        input[type=submit]:hover,
+        input[type=reset]:hover {
+            background-color: #39ace7;
+        }
+
+        input[type=submit] {
+            width: 100%;
+        }
+
+        input[type=button]:active,
+        input[type=submit]:active,
+        input[type=reset]:active {
+            -moz-transform: scale(0.95);
+            -webkit-transform: scale(0.95);
+            -o-transform: scale(0.95);
+            -ms-transform: scale(0.95);
+            transform: scale(0.95);
+        }
+
+        input[type=text],
+        input[type=password] {
+            background-color: #f6f6f6;
+            border: none;
+            color: #0d0d0d;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 5px;
+            width: 85%;
+            border: 2px solid #000000;
+            -webkit-transition: all 0.5s;
+            -moz-transition: all 0.5s;
+            -ms-transition: all 0.5s;
+            -o-transition: all 0.5s;
+            transition: all 0.5s;
+            -webkit-border-radius: 5px 5px 5px 5px;
+            border-radius: 5px 5px 5px 5px;
+        }
+    </style>
+
+    <style>
+        /* Your CSS styles for the login page */
+        .fade-out {
+            opacity: 1;
+            transition: opacity 0.5s ease-out;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .bg-glass {
+            background-color: hsla(0, 0%, 10%, 0.8) !important;
+            backdrop-filter: saturate(2000%) blur(60px);
+            border-radius: 22px;
+        }
+    </style>
+</head>
+
+        
+          
+      
+          <!-- Your JavaScript code -->
+          <script>
+              document.getElementById("register-link").addEventListener("click", function(event) {
+                  event.preventDefault(); // Prevent default link behavior
+                  
+                  var loginPage = document.getElementById("login-page");
+                  loginPage.classList.remove("fade-out");
+                  setTimeout(function() {
+                      loginPage.classList.add("hidden");
+                      window.location.href = "register.html"; // Redirect to the registration page
+                  }, 500); // Adjust the duration to match the transition duration in CSS
+              });
+          </script>
+            <script>
+              window.addEventListener('DOMContentLoaded', function() {
+                  var loginSection = document.getElementById('login-section');
+                  var targetPosition = loginSection.getBoundingClientRect().top;
+                  var startPosition = window.pageYOffset;
+                  var distance = targetPosition - startPosition;
+                  var duration = 2000; // Adjust the duration as needed (in milliseconds)
+                  var startTime;
+              
+                  function scrollAnimation(currentTime) {
+                      if (startTime === undefined) startTime = currentTime;
+                      var timeElapsed = currentTime - startTime;
+                      var scrollProgress = Math.min(timeElapsed / duration, 1);
+                      var scrollValue = startPosition + distance * ease(scrollProgress);
+                      window.scrollTo(0, scrollValue);
+                      if (timeElapsed < duration) requestAnimationFrame(scrollAnimation);
+                  }
+              
+                  function ease(t) {
+                      // You can use different easing functions for different scroll effects
+                      return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+                  }
+              
+                  // Start the scroll animation
+                  requestAnimationFrame(scrollAnimation);
+              });
+              </script>
+              
+              
+            <!-- Section: Design Block -->
+            <section class="background-radial-gradient overflow-hidden">
+                <style>
+                    {% comment %} .background-radial-gradient {
+                        background-color: hsl(218, 41%, 15%);
+                        background-image: radial-gradient(650px circle at 0% 0%, hsl(218, 41%, 35%) 15%, hsl(218, 41%, 30%) 35%, hsl(218, 41%, 20%) 75%, hsl(218, 41%, 19%) 80%, transparent 100%), radial-gradient(1250px circle at 100% 100%, hsl(218, 41%, 45%) 15%, hsl(218, 41%, 30%) 35%, hsl(218, 41%, 20%) 75%, hsl(218, 41%, 19%) 80%, transparent 100%);
+                    } {% endcomment %}
+        
+                    #radius-shape-1 {
+                        height: 220px;
+                        width: 220px;
+                        top: -60px;
+                        left: -130px;
+                        position: absolute;
+                        animation: breathe 4s infinite alternate ease-in-out;
+                        -webkit-font-smoothing: antialiased;
+                        background: radial-gradient(#44006b, #56baed);
+                        overflow: hidden;
+                    }
+                    @keyframes breathe {
+                      0% {
+                          transform: scale(1);
+                          opacity: 0.5;
+                      }
+                      80% {
+                          transform: scale(1.2);
+                          opacity: 0.0;
+                      }
+                  }
+                    #radius-shape-2 {
+                        border-radius: 38% 62% 63% 37% / 70% 33% 67% 30%;
+                        bottom: -60px;
+                        right: -110px;
+                        width: 300px;
+                        height: 300px;
+                        position: absolute;
+                        animation: breathe 4s infinite alternate ease-in-out;
+                        background: radial-gradient(#44006b, #56baed);
+                        overflow: hidden;
+                    }
+        
+                    {% comment %} .bg-glass {
+                      background-color: hsla(0, 0%, 100%, 0.9) !important;
+                      backdrop-filter: saturate(2000%) blur(6px);
+                      
+                      
+                      border-radius: 22px;
+                      
+                  } {% endcomment %}
+
+                    
+                </style>
+
+                <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
+                  <div class="row gx-lg-5 align-items-center mb-5 justify-content-center">
+                      <div style="z-index: 10">
+                        <br>
+                        <br>
+                        <br>
+                          <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
+                            More than just time tracking <br />
+                              <span style="color: hsl(218, 81%, 75%)">offers the complete solution for business success.</span>
+                          </h1>
+                          <p class="mb-4 opacity-70" style="color: hsl(218, 81%, 85%)">
+                            "The key is not to prioritize what's on your schedule, 
+                            <br>
+                            but to schedule your priorities".
+                          </p>
+                      </div> 
+                      
+      
+                      <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
+                          <div id="radius-shape-1" class="position-absolute rounded-circle shadow-5-strong"></div>
+                          <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
+                          
+                           <br>
+                          <br>
+                          <br>
+                          <br>
+                          {% comment %}<br>
+                          <br>
+                          <br>
+                          <br>
+                          <br>
+                          <br>
+                          <br>
+                          <br>
+                          <br>
+                          <br>
+                          <br>
+                          <br>
+
+
+
+                          <br>
+                          
+                          <br> {% endcomment %}
+                  {% comment %} <div id="login-section"> {% endcomment %}
+
+
+                        <div class="card bg-glass">
+                            <div class="card-body px-4 py-5 px-md-5">
+                                <div class="card-body px-4 py-0 px-md-5">
+                                    <h3 class=" fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">Manager Registration</h3>
+                                    <br />
+                                </div>
+                                <form method="POST">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <input type="text" name="username" class="form-control" placeholder="Username">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" name="age" class="form-control" placeholder="Age">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" name="salary" class="form-control" placeholder="Salary">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" name="email" class="form-control" placeholder="Email">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" name="password1" class="form-control" placeholder="Password">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" name="password2" class="form-control" placeholder="Confirm Password">
+                                    </div>
+                                    <br>
+                                    <input type="submit" class="btn btn-primary btn-block" value="Register" style="width: 36%;">
+                                    
+                                </form>
+                                
+                    {% comment %} <a href = "{% url 'logout' %}" class = "btn btn-danger">LOGOUT</a> {% endcomment %}
+                                {% comment %}
+                                
+                                
+                                <a style="margin-right: 6px">Already have an account?  
+                                    <a action="{% url 'login' %}"  class=" inline-flex items-center bg-gray-100 border-20 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0_blank"> Login Now..!!
+                                    </a>   
+                                    
+                                    
+                                    {% endcomment %}
+                                        {% comment %} <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
+                                          <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                      </svg> {% endcomment %}
+                                      <p  style="margin-right: 6px;">
+                                        <a  class="  fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">Already have an account?  </a>
+                                        <a href="{% url 'login' %}" class="inline-flex items-center bg-gray-100 border-20 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">Login Now..!!</a>
+                                    </p>
+                                    
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Section: Design Block -->
+</body>
+</html>
+

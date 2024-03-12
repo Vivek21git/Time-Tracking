@@ -1,0 +1,94 @@
+{% extends "../base.html" %}
+{% load static %}
+
+{% block content %}
+<style>
+  .custom-width {
+    width: 98%;
+  }
+  .custom-mar {
+    margin-left: 15px;
+  }
+  .custom-mar1 {
+    margin-left: 950px;
+  }
+  .my-element {
+    background: none;
+  }
+</style>
+<br>
+<div class="row custom-mar custom-width my-4">
+    <div class="col-12">
+      <div class="mb-0 bg-glass shadow border-radius-xl card text-left">
+        <div class="card-header my-element">
+          <h6>User LIST</h6>
+          {% comment %} <a href="{% url 'project_create' %}" class="btn btn-dark btn-sm mb-0 btn btn-outline-gray custom-mar1">Add Project</a> {% endcomment %}
+        </div>
+        <div class="card-body px-0 pt-0 pb-2">
+            <div class="table-responsive p-0"> 
+            <table class="table align-items-center mb-0">
+       
+          <thead>
+            <tr>
+              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">User Name</th>
+              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Age</th>
+              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Salary</th>
+              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Function</th>
+              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for user in users %}
+            <tr>
+              <h1 class="align-middle text-center">
+                <span class="text-xs font-weight-bold"></span>
+              </h1>
+              <td class="align-middle text-center" >
+                <div class="d-flex px-2 py-1">
+                  <div>
+                    
+                    {% if user.profile_picture %}
+                      <img src="{{ user.profile_picture.url }}" class="avatar avatar-sm me-3"  alt="{{ user.username }}">
+                    {% else %}
+                      <img src="{% static 'path_to_default_image.jpg' %}" class="avatar avatar-sm me-3 rounded-circle" alt="Default Profile Picture">
+                    {% endif %}
+                  </div>
+                  <div class="d-flex flex-column justify-content-center">
+                    <h6 class="mb-0 text-sm">{{ user.username }}</h6>
+                  </div>
+                </div>
+              </td>
+              <td class="align-middle text-center">
+                <span class="text-xs font-weight-bold">{{ user.age }}</span>
+              </td>
+              <td class="align-middle text-center">
+                <span class="text-xs font-weight-bold">{{ user.salary }}</span>
+              </td>
+              <td class="align-middle text-center">
+                {% if user.is_manager %}
+                  <p class="text-xs font-weight-bold mb-0">Manager</p>
+                  <p class="text-xs text-secondary mb-0">Organizer</p>
+                {% elif user.is_developer %}
+                  <p class="text-xs font-weight-bold mb-0">Developer</p>
+                  <p class="text-xs text-secondary mb-0">Programmer</p>
+                {% else %}
+                  <p class="text-xs text-secondary mb-0">Not specified</p>
+                {% endif %}
+              </td>
+              <td class="align-middle text-center">
+                {% comment %} <a href="{% url 'project_update' user.id %}" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                  Edit
+                </a> {% endcomment %}
+                <a href="{% url 'user_detail' user.id %}" class="btn btn-dark text-secondary font-weight-bold text-xs mt-0 mb-0 btn btn-outline-gray">DETAIL</a>
+                <a href="{% url 'task_assign' user.id %}" class="btn btn-dark text-secondary font-weight-bold text-xs mt-0 mb-0 btn btn-outline-gray">Assign Task</a>
+                <a href="{% url 'userdelete'  user.id %}" class="delete-btn btn-dark text-secondary font-weight-bold text-xs mt-0 mb-0 btn btn-outline-gray">DELETE</a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

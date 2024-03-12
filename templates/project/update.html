@@ -1,0 +1,167 @@
+{% extends "../base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    .bg-black {
+        background-color: #000000;
+    }
+    
+    .text-white {
+        color: #ffffff;
+    }
+
+    #formContent {
+        -webkit-border-radius: 10px 10px 10px 10px;
+        border-radius: 10px 10px 10px 10px;
+        background: #fff;
+        padding: 30px;
+        width: 90%;
+        max-width: 450px;
+        position: relative;
+        padding: 20px;
+        -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+        box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+        text-align: center;
+        {% comment %} margin-left: 25px;  {% endcomment %}
+        margin: auto; /* Center the form */
+      }
+    
+    .form-group input[type="text"],
+    .form-group input[type="password"],
+    .form-group input[type="date"],
+    .form-group select,
+    .form-group textarea {
+        background-color: #ffffff;
+        border-color: #d6d6d6;
+        color: #ffffff;
+        border-radius: 8px;
+        padding: 8px;
+        width: 100%;
+        margin: auto;
+        
+    }
+    
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        color: #ffffff;
+        border-radius: 5px;
+        padding: 10px;
+        width: 36%;
+        margin: auto; /* Center the form */
+    }
+    .custom-width {
+        width: 61%; /* Adjust the width as needed */
+    }
+    .custom-mar {
+        margin-left: 0px; /* Adjust the side as needed */
+    }
+    
+</style>
+<body>
+    <br>
+
+    {% comment %} <div class="container wrapper  navbar-expand-lg px-3 py-0 mx-4 shadow border-radius-xl custom-width"> {% endcomment %}
+        <br>
+        <div class="row custom-mar "> 
+            <div class=" row col-md-4 px-3 py-0 mx-4 shadow border-radius-xl card text-left bg-glass   "  >
+               <br>
+               <br> <p class="my-0 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 75%) ">
+                Update your project here..!!
+                </p>
+                <form method="post"  >
+                    {% csrf_token %}
+                    <div class="form-group ">
+                        <label for="id_title" class="text-white"></label>
+                        {{ form.title|as_crispy_field }}
+                    
+                        <label for="id_description" class="text-white"></label>
+                        {{ form.description|as_crispy_field }}
+                    
+                        <label for="id_technology" class="text-white"></label>
+                        {{ form.technology|as_crispy_field }}
+                    
+                        <label for="id_estimated_hours" class="text-white"> </label>
+                        {{ form.estimated_hours|as_crispy_field }}
+                    
+                        <label for="id_startDate" class="text-white"> </label>
+                        {{ form.startDate|as_crispy_field }}
+                   
+                        <label for="id_endDate" class="text-white"> </label>
+                        {{ form.endDate|as_crispy_field }}
+                    </div>
+                    
+                    <input type="submit" class="btn btn-primary btn-block" value="Update" style="width: 98%;">
+                    <br>
+                    <br>
+                  
+            <br>
+            </div>
+                <div class="row col-md-1 bg-glass  shadow border-radius-xl custom-width">
+                    <div class="container px-1 py-1 px-md-5 text-center text-lg-start my-5">
+                        <div class="row gx-lg-2 align-items-center mb-51 justify-content-center">
+                            <a style="z-index: 10">
+                                <h1 class="my-0 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
+                                More than just time tracking <br />
+                                <span style="color: hsl(218, 81%, 75%)">offers the complete solution for business success.</span>
+                                </h1>
+                                <p class="mb-4 opacity-70" style="color: hsl(218, 81%, 85%)">
+                                "The key is not to prioritize what's on your schedule, 
+                                    <br>
+                                but to schedule your priorities".
+                                </p>
+                            </a>
+                            <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
+                                <img class="object-cover object-center rounded" alt="hero" src="https://source.unsplash.com/600x720/?coding">
+                            </div>
+                        </div>
+                    </div>      
+                </div>
+            </div>
+            
+
+       
+
+</body>
+</html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Initialize Select2 dropdown
+        $('#team-members').select2({
+            placeholder: 'Select team members',
+            // Add your configuration options here
+        });
+    });
+</script>
+{% endblock content %}
+
+{% comment %} {% extends "../base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+
+{% block content %}
+
+
+<div class="container">
+   <div class="row">
+       <div class="col-md-6">
+           <H2>UPDATE</H2>
+
+           <form method="POST">
+               {% csrf_token %}
+               {{form|crispy}}
+               <button type="submit" class="btn btn-primary">UPDATE</button>
+           </form>
+       </div>
+   </div>
+
+
+{% endblock content %} {% endcomment %}

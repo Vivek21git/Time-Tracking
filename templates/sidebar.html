@@ -1,0 +1,316 @@
+<style>
+  .bg-glass {
+    background-color: hsla(0, 0%, 10%, 0.8) !important;
+    backdrop-filter: saturate(2000%) blur(60px);
+    
+    
+    border-radius: 22px;
+    
+  }
+
+  {% comment %} .bg-glass1 {
+    background-color: rgba(0, 0%, 10%, 0.8) !important; /* Transparent white background */
+    backdrop-filter: saturate(2000%) blur(60px); /* Adjust blur intensity for glass effect */
+    border-radius: 12px;
+} {% endcomment %}
+
+
+  
+  </style>
+<aside
+  class="sidenav  card bg-glass bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 ps"
+  id="sidenav-main"
+>
+  <div class="sidenav-header">
+    {% comment %} <i
+      class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
+      aria-hidden="true"
+      id="iconSidenav"
+    ></i> {% endcomment %}
+    <a
+      class="navbar-brand m-4"
+      href="{% url 'developer_dashboard' %}"
+      target="_blank">
+       {% comment %} <img 
+        src="./assets/img/logo-ct-dark.png"
+        class="navbar-brand-img h-100"
+        alt="main_logo"
+      /> {% endcomment %}
+      <span class="ms-4 font-weight-bold">Time Tracking</span> 
+    </a>
+  </div>
+  {% comment %} <hr class="horizontal dark mt-0" /> {% endcomment %}
+  {% comment %} <h6>*********************</h6>  {% endcomment %}
+
+
+
+  {% if user.is_manager == True  %}
+  {% comment %} <a class="nav-link"> {% endcomment %}
+  <div
+    class=" w-auto ps ps--active-y mt-1"
+    id="sidenav-collapse-main">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          {% comment %} <li class="nav-item {% if request.path == '/project/create/' %}active{% endif %}"> {% endcomment %}
+        <a class="nav-link  b {% if request.path == '/user/manager_dashboard/' %} bg-glass{% endif %}" href="{% url 'manager_dashboard' %}">
+          {% comment %} <a class="nav-link " href="{% url 'project_create' %}"> {% endcomment %}
+            <div
+              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center"
+            >
+              <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Dashboard</span>
+          </a>
+        </li>
+
+
+        <li class="nav-item ">
+
+          <a class="nav-link {% if request.path == '/project/list/' %}bg-glass{% endif %}"  href= "{% url 'project_list' %}"  >
+            <div
+              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center"
+            >
+              <i
+                class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"
+              ></i>
+            </div>
+            <span class="nav-link-text ms-1">Project List</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link  b {% if request.path == '/project/create/' %} bg-glass{% endif %}" href="{% url 'project_create' %}">
+            <div
+              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center"
+            >
+              <i class="ni ni-credit-card text-success text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Create Project</span>
+          </a>
+        </li>
+
+        
+          <a class="nav-link  b {% if request.path == '/project/modulelist/' %} bg-glass{% endif %}" href="{% url 'module_list' %}"> 
+            {% comment %} <a class="nav-link b {% if request.path == 'project/<int:project_id>/create-team/' %} bg-glass{% endif %}" href="{% url 'project_team_create' %}">  {% endcomment %}
+
+            <div
+              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center"
+            >
+              <i class="ni ni-app text-info text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Module List</span>
+          </a>
+        </li>
+
+
+        <li class="nav-item">
+          <a class="nav-link b {% if request.path == '/project/userlist/' %} bg-glass{% endif %}" href="{% url 'user_list' %}">
+            <div
+              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center"
+            >
+              <i class="ni ni-world-2 text-danger text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">User List</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link b {% if request.path == '/project/task_list/' %} bg-glass{% endif %}" href="{% url 'task_list' %}">
+            <div
+              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center"
+            >
+              <i class="ni ni-settings text-danger text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Task List</span>
+          </a>
+        </li>
+        
+
+
+        {% comment %} <li class="nav-item">
+          <a href="javascript:;" class="nav-link text-white font-weight-bold px-6">
+            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-person me-1" viewBox="0 0 20 20">
+              <path d="M10 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm5-5a7 7 0 1 1-14 0 7 7 0 0 1 14 0z"/>
+            </svg>
+            {% if request.user.is_authenticated %}
+              {{ request.user }}
+            {% endif %}
+          </a>
+        </li> {% endcomment %}
+        
+
+
+          {% comment %} <a class="nav-link" href="./pages/profile.html">
+            <div
+              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center"
+            >
+              <i class="ni ni-single-02 text-dark text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Profile</span>
+          </a> 
+          
+        </li>{% endcomment %}
+
+
+        {% comment %} <li class="nav-item">
+          <a class="nav-link" href="./pages/sign-in.html">
+            <div
+              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center"
+            >
+              <i class="ni ni-single-copy-04 text-warning text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Sign In</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./pages/sign-up.html">
+            <div
+              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center"
+            >
+              <i class="ni ni-collection text-info text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Sign Up</span>
+          </a>
+        </li> {% endcomment %}
+      </ul>
+
+    
+    
+  </div>
+  {% else %}
+   
+  
+    <div
+      class="collapse navbar-collapse w-auto ps ps--active-y"
+      id="sidenav-collapse-main">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            {% comment %} <li class="nav-item {% if request.path == '/project/create/' %}active{% endif %}"> {% endcomment %}
+          <a class="nav-link  b {% if request.path == '/user/developer_dashboard/' %} bg-glass{% endif %}" href="{% url 'developer_dashboard' %}">
+            {% comment %} <a class="nav-link " href="{% url 'project_create' %}"> {% endcomment %}
+              <div
+                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center"
+              >
+                <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+              </div>
+              <span class="nav-link-text ms-1">Dashboard</span>
+            </a>
+          </li>
+
+
+          <li class="nav-item ">
+
+            <a class="nav-link {% if request.path == '/project/list/' %}bg-glass{% endif %}"  href= "{% url 'project_list' %}"  >
+              <div
+                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center"
+              >
+                <i
+                  class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"
+                ></i>
+              </div>
+              <span class="nav-link-text ms-1">Project List</span>
+            </a>
+          </li>
+
+          
+
+          
+            <a class="nav-link  b {% if request.path == '/project/modulelist/' %} bg-glass{% endif %}" href="{% url 'module_list' %}"> 
+              {% comment %} <a class="nav-link b {% if request.path == 'project/<int:project_id>/create-team/' %} bg-glass{% endif %}" href="{% url 'project_team_create' %}">  {% endcomment %}
+
+              <div
+                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center"
+              >
+                <i class="ni ni-app text-info text-sm opacity-10"></i>
+              </div>
+              <span class="nav-link-text ms-1">Module List</span>
+            </a>
+          </li>
+
+
+          <li class="nav-item">
+            <a class="nav-link b {% if request.path == '/project/userlist/' %} bg-glass{% endif %}" href="{% url 'user_list' %}">
+              <div
+                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center"
+              >
+                <i class="ni ni-world-2 text-danger text-sm opacity-10"></i>
+              </div>
+              <span class="nav-link-text ms-1">User List</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link b {% if request.path == '/project/task_list/' %} bg-glass{% endif %}" href="{% url 'task_list' %}">
+              <div
+                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center"
+              >
+                <i class="ni ni-settings text-danger text-sm opacity-10"></i>
+              </div>
+              <span class="nav-link-text ms-1">Task List</span>
+            </a>
+          </li>
+          
+
+        
+        </ul>
+
+      
+      
+    </div>
+  
+  {% endif %}
+  {% comment %} <div class="sidenav-footer mx-3">
+    <div class="card card-plain shadow-none" id="sidenavCard">
+      <img
+        class="w-50 mx-auto"
+        src="./assets/img/illustrations/icon-documentation.svg"
+        alt="sidebar_illustration"
+      />
+      <div class="card-body text-center p-3 w-100 pt-0">
+        <div class="docs-info">
+          <h6 class="mb-0">Need help?</h6>
+          <p class="text-xs font-weight-bold mb-0">Please check our docs</p>
+        </div>
+      </div>
+    </div> {% endcomment %}
+    {% comment %} <a
+      href="https://www.creative-tim.com/learning-lab/bootstrap/license/argon-dashboard"
+      target="_blank"
+      class="btn btn-dark btn-sm w-100 mb-3"
+      >Documentation</a
+    > {% endcomment %}
+    {% comment %} <a
+      class="btn btn-primary btn-sm mb-0 w-100"
+      href="{% url 'logout' %}"
+      
+      type="button"
+      >Logout
+      </a> {% endcomment %}
+      
+      {% comment %} <h6>*********************</h6> {% endcomment %}
+
+
+
+
+
+      {% comment %} <li class="nav-item mt-3"> {% endcomment %}
+        <h6
+          class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6"
+        >
+          Account pages
+        </h6>
+      </li>
+      <a class="card-body text-center p-3 w-100 pt-0">
+
+        <form action="{% url 'logout' %}" method="post" >
+          {% csrf_token %}
+          <button type="submit" class="btn btn-dark btn-sm btn btn-outline-gray btn-sm mb-0 w-100">LOGOUT</button>
+       </form>
+       
+      </a>
+  </div>
+  <div class="ps__rail-x" style="left: 0px; bottom: 0px">
+    <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px"></div>
+  </div>
+  <div class="ps__rail-y" style="top: 0px; right: 0px">
+    <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px"></div>
+  </div>
+</aside>

@@ -1,0 +1,33 @@
+
+{% extends "../base.html" %}
+{% block content %}
+<form method="POST">
+    <div class=" card-body p-1 bg-glass  shadow border-radius-xl my-5 mb-3 mx-3 ">
+        <div class="container px-1 py-1 px-md-5 text-center text-lg-start my-5">
+            <div class="row gx-lg-2 align-items-center mb-51 justify-content-center">
+                <a style="z-index: 100">
+                    <h1 class="my-0 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
+                    Are you sure..!! <br />
+                    <span style="color: hsl(218, 81%, 75%)">Do you really want to delete this Task?</span>
+                    </h1>
+                    <br>
+                    <p class="mb-4 opacity-70" style="color: hsl(218, 81%, 85%)">
+                    Deleting this Task is irreversible and will result in 
+                        <br>
+                        loss of all associated information. 
+                    </p>
+                    <p class="text-info" >Please confirm to proceed...!!</p>
+                    {% csrf_token %}
+                    <input type="submit" value="DELETE" class="btn btn-danger" />
+                    </form>
+                </a>
+                {% comment %} <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
+                    <img class="object-cover object-center rounded" alt="hero" src"=https://source.unsplash.com/600x720/?coding">
+                </div> {% endcomment %}
+            </div>
+        </div>      
+    </div>
+    
+    
+   
+{% endblock content %}

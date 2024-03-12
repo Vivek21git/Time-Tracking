@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row px-md-3 card-body p-1 bg-glass shadow border-radius-xl my-5 mb-3 mx-3">
+    <div class="container px-1 py-1 px-md-5 text-center  text-lg-start my-5">
+        <div class="row">
+            {% comment %} {% for user in  users %} {% endcomment %}
+            <div class="col-md-6">
+            <a style="z-index: 100">
+                <h1 class="my-0 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
+                User Details..!!
+                <br >
+                <span style="color: hsl(218, 81%, 75%)" class="mb-4">{{user.username}} </span>
+                </h1>
+                <br>
+                <p class="mb-2 opacity-70" style="color: hsl(218, 81%, 85%)">
+                    Age : {{user.age}}  
+                </p>
+                <p class="mb-2 opacity-70" style="color: hsl(218, 81%, 85%)">
+                    Is manager : {{user.is_manager}} Hours
+                </p>
+                <p class="mb-2 opacity-70" style="color: hsl(218, 81%, 85%)">
+                    Is developer  {{user.is_developer}} 
+                <p class="mb-2 opacity-70" style="color: hsl(218, 81%, 85%)">
+                    Salary : {{user.salary}} ₹
+                </p>
+                <p class="mb-2 opacity-70" style="color: hsl(218, 81%, 85%)">
+                    Assigned Tasks : 
+                
+                    <ul>
+                        {% for task in task_assign %}
+                            <li>{{ task.title }} - {{ task.description }}</li>
+                        {% endfor %}
+                    </ul>
+            </p>
+            </a>
+            
+        </div>
+        
+        {% comment %} {% endfor %} {% endcomment %}
+            
+                <!-- First column for text (left side) -->
+                
+                <!-- Second column for image (right side) -->
+                <div class="col-md-4">
+                    <div class="row gx-lg-10 align-items-center mb-51 justify-content-center">
+                        <div class="lg:max-w-lg lg:w-full md:w-1/1 w-5/6">
+                            <img class="object-cover object-center rounded" alt="hero" src="https://source.unsplash.com/500x280/?programing">
+                        </div>
+                    </div>
+                </div>
+            
+        </div>
+    </div>
+</div>
+
+<div class="row px-md-3 card-body  p-1 bg-glass shadow border-radius-xl my-5 mb-3 mx-3">
+    <div class="container px-1 py-1 px-md-5 text-center  text-lg-start my-5">
+        <div class="row ">
+            <!-- First column for text (left side) -->
+            
+            <!-- Second column for image (right side) -->
+            <div class="col-md-6">
+                <div class="row gx-lg-10 align-items-center mb-51 justify-content-center">
+                    <div class="lg:max-w-lg lg:w-full md:w-1/1 w-5/6">
+                        <img class="object-cover object-center rounded " alt="hero" src="https://source.unsplash.com/500x390/?coding">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6  ">
+                <div class="row gx-lg-2 align-items-center  mb-51 justify-content-center">
+                    <a style="z-index: 10">
+                        <h1 class="my-0 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
+                            More than just time tracking <br />
+                            <span style="color: hsl(218, 81%, 75%)">offers the complete solution for business success.</span>
+                        </h1><br>
+                        <p class="mb-4 opacity-70" style="color: hsl(218, 81%, 85%)">
+                            "The key is not to prioritize what's on your schedule, 
+                            <br>
+                            but to schedule your priorities".
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

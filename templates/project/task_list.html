@@ -1,0 +1,128 @@
+{% extends "../base.html" %}
+{% load static %}
+
+{% block content %}
+<style>
+  .custom-width {
+    width: 98%;
+  }
+  .custom-mar {
+    margin-left: 15px;
+  }
+  .custom-mar1 {
+    margin-left: 980px;
+  }
+  .my-element {
+    background: none;
+  }
+</style>
+<br>
+<div class="row custom-mar custom-width my-4">
+    <div class="col-12">
+      <div class="mb-0 bg-glass shadow border-radius-xl card text-left">
+        <div class="card-header my-element">
+          <h6>Task LIST</h6>
+          {% comment %} <a href="{% url 'project_create' %}" class="btn btn-dark btn-sm mb-0 btn btn-outline-gray custom-mar1">Add Task</a> {% endcomment %}
+        </div>
+        <div class="card-body px-0 pt-0 pb-2">
+            <div class="table-responsive p-0"> 
+            <table class="table align-items-center mb-0">
+              <thead>
+                <tr>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Task Name</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">module</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">project</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">priority</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ACTION</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for task in task_list %}
+                <tr>
+                  <td class="justify-content-center">
+                    <div class="d-flex px-2 py-1">
+                      {% comment %} <div class="d-flex flex-column justify-content-center custom-mar">
+                        <h6 class="mb-0 text-sm">{{project.id}}</h6>
+                      
+                        
+                      </div> {% endcomment %}
+                      <div class="d-flex flex-column justify-content-center custom-mar">
+                        
+                      
+                        <h6 class="mb-0 text-sm">{{task.title}}</h6>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="align-middle text-center">
+                    <span class="text-xs font-weight-bold">{{task.module}}</span>
+                  </td>
+                  <td class="align-middle text-center">
+                    <span class="text-secondary text-xs font-weight-bold">{{task.taskstatus}}</span>
+                  </td>
+                  <td class="align-middle text-center text-sm">
+                    <span class="badge badge-sm bg-gradient-success">{{task.project}}</span>
+                  </td>
+                  <td class="align-middle text-center">
+                    <span class="text-secondary text-xs font-weight-bold">{{task.priority}}</span>
+                  </td>
+                  
+                  <td class="align-middle text-center">
+                    <a href="{% url 'task_update'  task.id %}" class="btn btn-dark text-secondary font-weight-bold text-xs mt-0 mb-0 btn btn-outline-gray" >EDIT</a>
+                    {% comment %} <a href="{% url 'task_detail'  task.id %}" class="btn btn-dark text-secondary font-weight-bold text-xs mt-0 mb-0 btn btn-outline-gray">DETAIL</a> {% endcomment %}
+                    <a href="{% url 'task_delete'  task.id %}" class="delete-btn btn-dark text-secondary font-weight-bold text-xs mt-0 mb-0 btn btn-outline-gray">DELETE</a>
+                    
+                </tr>
+                {% endfor %} 
+              </tbody>
+            </table>
+          </div> 
+        </div>
+      </div>
+    </div>
+  </div>
+<script>
+  // JavaScript for handling edit, detail, and delete actions
+  document.addEventListener('DOMContentLoaded', function() {
+    const editButtons = document.querySelectorAll('.edit-btn');
+    const detailButtons = document.querySelectorAll('.detail-btn');
+    const deleteButtons = document.querySelectorAll('.delete-btn');
+
+    // Add event listeners to each edit button
+    editButtons.forEach(function(button) {
+      button.addEventListener('click', function() {
+        const projectId = button.dataset.projectId;
+        // Redirect to the edit page with the project ID
+        window.location.href = `/edit/${projectId}/`;
+      });
+    });
+
+    // Add event listeners to each detail button
+    detailButtons.forEach(function(button) {
+      button.addEventListener('click', function() {
+        const projectId = button.dataset.projectId;
+        // Redirect to the detail page with the project ID
+        window.location.href = `/detail/${projectId}/`;
+      });
+    });
+
+    // Add event listeners to each delete button
+    deleteButtons.forEach(function(button) {
+      button.addEventListener('click', function() {
+        const projectId = button.dataset.projectId;
+        // Implement logic to delete the project with the given ID
+        if (confirm('Are you sure you want to delete this project?')) {
+          // Send a request to delete the project
+          // Example: fetch(`/delete/${projectId}/`, { method: 'DELETE' })
+          //   .then(response => response.json())
+          //   .then(data => {
+          //     // Handle the response
+          //   })
+          //   .catch(error => console.error('Error:', error));
+          console.log(`Deleting project with ID ${projectId}`);
+        }
+      });
+    });
+  });
+</script>
+{% endblock content %}
